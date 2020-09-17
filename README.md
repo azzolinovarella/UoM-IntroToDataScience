@@ -1,0 +1,1 @@
+This project has all the assignments COMPLETLY written by myself from the course "Introduction To Data Science" from the University of Michigan.

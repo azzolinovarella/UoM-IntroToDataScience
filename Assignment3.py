@@ -58,7 +58,7 @@ def answer_one():
     import numpy as np
 
     # First DataFrame
-    da1 = pd.read_excel('Energy Indicators.xls', sheet_name='energy', usecols=[2, 3, 4, 5],
+    da1 = pd.read_excel('Energy Indicators.xls', usecols=[2, 3, 4, 5],
                         names=['Country', 'Energy Supply', 'Energy Supply per Capita', '% Renewable'],
                         skiprows=17, skipfooter=38)
 
@@ -93,7 +93,7 @@ def answer_one():
     GPD = da2
 
     # Third DataFrame
-    da3 = pd.read_excel('scimagojr-3.xlsx', sheet_name='ScimEn')
+    da3 = pd.read_excel('scimagojr-3.xlsx')
 
     ScimEn = da3
 
@@ -112,9 +112,9 @@ def answer_two():
     import numpy as np
 
     # First DataFrame
-    da1 = pd.read_excel('Energy Indicators.xls', sheet_name='energy', usecols=[2, 3, 4, 5],
+    da1 = pd.read_excel('Energy Indicators.xls', usecols=[2, 3, 4, 5],
                         names=['Country', 'Energy Supply', 'Energy Supply per Capita', '% Renewable'],
-                        skiprows=17, skip_footer=38)
+                        skiprows=17, skipfooter=38)
 
     da1['Energy Supply'] *= 1000000
 
@@ -147,7 +147,7 @@ def answer_two():
     GPD = da2
 
     # Third DataFrame
-    da3 = pd.read_excel('scimagojr-3.xlsx', sheet_name='ScimEn')
+    da3 = pd.read_excel('scimagojr-3.xlsx')
 
     ScimEn = da3
 
@@ -176,7 +176,7 @@ def answer_three():
     Top15 = answer_one()
     ans3 = (
         pd.Series(np.mean(Top15[[str(year) for year in range(2006, 2016)]], axis=1), index=Top15.index, name='avgGDP')
-          .sort_values(ascending=False))
+            .sort_values(ascending=False))
 
     return ans3
 
@@ -269,15 +269,6 @@ def answer_nine():
     ans9 = (Top15['Citable docs per Capita'].astype(float)).corr((Top15['Energy Supply per Capita'].astype(float)))
 
     return ans9
-
-def plot9():
-    import matplotlib as plt
-    get_ipython().magic('matplotlib inline')
-
-    Top15 = answer_one()
-    Top15['PopEst'] = Top15['Energy Supply'] / Top15['Energy Supply per Capita']
-    Top15['Citable docs per Capita'] = Top15['Citable documents'] / Top15['PopEst']
-    Top15.plot(x='Citable docs per Capita', y='Energy Supply per Capita', kind='scatter', xlim=[0, 0.0006])
 
 
 # ### Question 10 (6.6%)
@@ -411,25 +402,6 @@ def answer_thirteen():
 
     return ans13
 
-# ### Optional
-# 
-# Use the built in function `plot_optional()` to see an example visualization.
-
-def plot_optional():
-    import matplotlib as plt
-    get_ipython().magic('matplotlib inline')
-    Top15 = answer_one()
-    ax = Top15.plot(x='Rank', y='% Renewable', kind='scatter',
-                    c=['#e41a1c', '#377eb8', '#e41a1c', '#4daf4a', '#4daf4a', '#377eb8', '#4daf4a', '#e41a1c',
-                       '#4daf4a', '#e41a1c', '#4daf4a', '#4daf4a', '#e41a1c', '#dede00', '#ff7f00'],
-                    xticks=range(1, 16), s=6 * Top15['2014'] / 10 ** 10, alpha=.75, figsize=[16, 6]);
-
-    for i, txt in enumerate(Top15.index):
-        ax.annotate(txt, [Top15['Rank'][i], Top15['% Renewable'][i]], ha='center')
-
-    print(
-        "This is an example of a visualization that can be created to help understand the data. This is a bubble chart showing % Renewable vs. Rank. The size of the bubble corresponds to the countries' 2014 GDP, and the color corresponds to the continent.")
-
 
 if __name__ == '__main__':
     print(answer_one(), end='\n\n')
@@ -445,5 +417,3 @@ if __name__ == '__main__':
     print(answer_eleven(), end='\n\n')
     print(answer_twelve(), end='\n\n')
     print(answer_thirteen(), end='\n\n')
-    plot9()  # Be sure to comment out plot9() before submitting the assignment!
-    plot_optional()  # Be sure to comment out plot_optional() before submitting the assignment!
