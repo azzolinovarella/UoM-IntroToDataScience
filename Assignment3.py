@@ -1,3 +1,7 @@
+import pandas as pd
+import numpy as np
+
+
 # Assignment 3 - More Pandas
 # This assignment requires more individual learning then the last one did - you are encouraged to check out the [pandas documentation](http://pandas.pydata.org/pandas-docs/stable/) to find functions or methods you might not have used yet, or ask questions on [Stack Overflow](http://stackoverflow.com/) and tag them as pandas and python related. And of course, the discussion forums are open for interaction with your peers and the course staff.
 
@@ -54,9 +58,6 @@
 # *This function should return a single number.*
 
 def answer_one():
-    import pandas as pd
-    import numpy as np
-
     # First DataFrame
     da1 = pd.read_excel('Energy Indicators.xls', usecols=[2, 3, 4, 5],
                         names=['Country', 'Energy Supply', 'Energy Supply per Capita', '% Renewable'],
@@ -108,9 +109,6 @@ def answer_one():
 
 
 def answer_two():
-    import pandas as pd
-    import numpy as np
-
     # First DataFrame
     da1 = pd.read_excel('Energy Indicators.xls', usecols=[2, 3, 4, 5],
                         names=['Country', 'Energy Supply', 'Energy Supply per Capita', '% Renewable'],
@@ -170,9 +168,6 @@ def answer_two():
 # *This function should return a Series named `avgGDP` with 15 countries and their average GDP sorted in descending order.*
 
 def answer_three():
-    import pandas as pd
-    import numpy as np
-
     Top15 = answer_one()
     ans3 = (
         pd.Series(np.mean(Top15[[str(year) for year in range(2006, 2016)]], axis=1), index=Top15.index, name='avgGDP')
@@ -187,9 +182,6 @@ def answer_three():
 # *This function should return a single number.*
 
 def answer_four():
-    import pandas as pd
-    import numpy as np
-
     Top15 = answer_one()
     Top6 = \
         (pd.Series(np.mean(Top15[[str(year) for year in range(2006, 2016)]], axis=1), index=Top15.index, name='avgGDP')
@@ -205,8 +197,6 @@ def answer_four():
 # *This function should return a single number.*
 
 def answer_five():
-    import numpy as np
-
     Top15 = answer_one()
     ans5 = np.mean(Top15['Energy Supply per Capita'], axis=0)
 
@@ -277,14 +267,11 @@ def answer_nine():
 # *This function should return a series named `HighRenew` whose index is the country name sorted in ascending order of rank.*
 
 def answer_ten():
-    import pandas as pd
-    import numpy as np
-
     Top15 = answer_one()
     median = np.median(Top15['% Renewable'], axis=0)
 
     for country in Top15.index:
-        if Top15.loc[country, '% Renewable'] > median:
+        if Top15.loc[country, '% Renewable'] >= median:
             Top15.loc[country, 'RenAvg'] = 1
         else:
             Top15.loc[country, 'RenAvg'] = 0
@@ -317,9 +304,6 @@ def answer_ten():
 # *This function should return a DataFrame with index named Continent `['Asia', 'Australia', 'Europe', 'North America', 'South America']` and columns `['size', 'sum', 'mean', 'std']`*
 
 def answer_eleven():
-    import pandas as pd
-    import numpy as np
-
     Top15 = answer_one()
     ContinentDict = {'China': 'Asia',
                      'United States': 'North America',
@@ -358,8 +342,6 @@ def answer_eleven():
 # *This function should return a __Series__ with a MultiIndex of `Continent`, then the bins for `% Renewable`. Do not include groups with no countries.*
 
 def answer_twelve():
-    import pandas as pd
-
     Top15 = answer_one()
     ContinentDict = {'China': 'Asia',
                      'United States': 'North America',
@@ -404,16 +386,16 @@ def answer_thirteen():
 
 
 if __name__ == '__main__':
-    print(answer_one(), end='\n\n')
-    print(answer_two(), end='\n\n')
-    print(answer_three(), end='\n\n')
-    print(answer_four(), end='\n\n')
-    print(answer_five(), end='\n\n')
-    print(answer_six(), end='\n\n')
-    print(answer_seven(), end='\n\n')
-    print(answer_eight(), end='\n\n')
-    print(answer_nine(), end='\n\n')
-    print(answer_ten(), end='\n\n')
-    print(answer_eleven(), end='\n\n')
-    print(answer_twelve(), end='\n\n')
-    print(answer_thirteen(), end='\n\n')
+    print('Ex1:\n', answer_one(), end='\n\n')
+    print('Ex2:\n', answer_two(), end='\n\n')
+    print('Ex3:\n', answer_three(), end='\n\n')
+    print('Ex4:\n', answer_four(), end='\n\n')
+    print('Ex5:\n', answer_five(), end='\n\n')
+    print('Ex6:\n', answer_six(), end='\n\n')
+    print('Ex7:\n', answer_seven(), end='\n\n')
+    print('Ex8:\n', answer_eight(), end='\n\n')
+    print('Ex9:\n', answer_nine(), end='\n\n')
+    print('Ex10:\n', answer_ten(), end='\n\n')
+    print('Ex11:\n', answer_eleven(), end='\n\n')
+    print('Ex12:\n', answer_twelve(), end='\n\n')
+    print('Ex13:\n', answer_thirteen(), end='\n\n')

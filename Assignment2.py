@@ -1,10 +1,12 @@
+import pandas as pd
+
+
 # Assignment 2 - Pandas Introduction
 # All questions are weighted the same in this assignment.
 # ## Part 1
 # The following code loads the olympics dataset (olympics.csv), which was derrived from the Wikipedia entry on [All Time Olympic Games Medals](https://en.wikipedia.org/wiki/All-time_Olympic_Games_medal_table), and does some basic data cleaning.
 #
 # The columns are organized as # of Summer games, Summer medals, # of Winter games, Winter medals, total # number of games, total # of medals. Use this dataset to answer the questions below.
-import pandas as pd
 
 df = pd.read_csv('olympics.csv', index_col=0, skiprows=1)
 
@@ -159,12 +161,12 @@ def answer_eight():
 
 
 if __name__ == '__main__':
-    print(answer_zero(), end='\n\n')
-    print(answer_one(), end='\n\n')
-    print(answer_two(), end='\n\n')
-    print(answer_three(), end='\n\n')
-    print(answer_four(), end='\n\n')
-    print(answer_five(), end='\n\n')
-    print(answer_six(), end='\n\n')
-    print(answer_seven(), end='\n\n')
-    print(answer_eight(), end='\n\n')
+    print('Ex0:\n', answer_zero(), end='\n\n\n')
+    print('Ex1:\n', answer_one(), end='\n\n')
+    print('Ex2:\n', answer_two(), end='\n\n')
+    print('Ex3:\n', answer_three(), end='\n\n')
+    print('Ex4:\n', answer_four(), end='\n\n')
+    print('Ex5:\n', answer_five(), end='\n\n')
+    print('Ex6:\n', answer_six(), end='\n\n')
+    print('Ex7:\n', answer_seven(), end='\n\n')
+    print('Ex8:\n', answer_eight(), end='\n\n')
